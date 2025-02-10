@@ -1,6 +1,6 @@
 public class OnlineStream
 {
-    public readonly List<Movie> _movies = new List<Movie>();
+    private readonly List<Movie> _movies = new();
 
     public readonly List<Movie> _watchedList = new List<Movie>();
 
@@ -10,6 +10,8 @@ public class OnlineStream
     {
 
     }
+
+    public IReadOnlyList<Movie> Movies => _movies;
 
 
     public void AddMovieToMovieList(Movie movie)
@@ -38,13 +40,19 @@ public class OnlineStream
 
     }
 
-
     public List<Movie> RecommendMovies(User user)
     {
         var watchedMovies = user.GetWatchedMovies();
         return _movies.Where(movie => !watchedMovies.Any(watchedMovie => watchedMovie.MovieId == movie.MovieId)).ToList();
     }
 
+    public List<Movie> SearchMovies(string movieName)
+    {
+        return _movies.Where(movie => movie.MovieName.Contains(movieName, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
 
-
+    public List<Movie> GetMoviesByGenre(string genre)
+    {
+        return _movies.Where(movie => movie.MovieGenere.Contains(genre, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
 }

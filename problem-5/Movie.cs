@@ -43,8 +43,7 @@ public class Movie
 
     public double GetMovieRate()
     {
-        var _movieratings = _ratings.Average(e => e.Value);
-        return _movieratings;
+        return _ratings.Any() ? _ratings.Average(r => r.Value) : 0;
     }
 
 
