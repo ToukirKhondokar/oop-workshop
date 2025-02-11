@@ -22,7 +22,7 @@ public class ManagementSystem
         _books.Add(book);
     }
 
-    public void BorrowBook(Member member, Book book)
+    public string BorrowBook(Member member, Book book)
     {
         if (member == null) throw new Exception("Member cannot be null ");
 
@@ -39,11 +39,13 @@ public class ManagementSystem
         book.Availability = BookStatus.Borrowed;
 
         _loans.Add(new Loan(member.MemberId ?? "", book.BookId ?? "", DateTime.Now));
+        // var borrow="Book borrow by {}";
+        return $"Book borrow by {member.MemberName}";
 
     }
 
 
-    public void ReturnBook(Member member, Book book)
+    public string ReturnBook(Member member, Book book)
     {
         var loan = _loans.FirstOrDefault(l => l.MemberId == member.MemberId && l.BookId == book.BookId);
         if (loan != null)
@@ -55,11 +57,12 @@ public class ManagementSystem
         {
             throw new Exception("Book not borrowed by this Member");
         }
+        return $"{member.MemberName} return this book";
     }
 
     public void checkDueDate()
     {
-        
+
         var currentDate = DateTime.Now;
         var dueDate = currentDate.AddDays(15);
         throw new Exception("Due Date: " + dueDate.ToShortDateString());
