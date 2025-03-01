@@ -22,4 +22,7 @@ Implemented a modular Smart Home System using interfaces and OOP principles
 - Added a 'Main' function to demonstrate system functionality with different smart devices.  
 
 This implementation follows SOLID principles, ensuring scalability and maintainability.
- 
+
+# Vehicle Simulation
+ "Implement Vehicle model with Car and Truck classes supporting driving and refueling. Adjust fuel consumption for summer conditions (increased by 0.9L/km for cars and 1.6L/km for trucks). Ensure the truck retains only 95% of refueled fuel due to a tank leak. Prevent fuel 
+  deduction if the vehicle cannot complete the given distance."
